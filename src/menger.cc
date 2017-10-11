@@ -38,5 +38,14 @@ void
 Menger::generate_geometry(std::vector<glm::vec4>& obj_vertices,
                           std::vector<glm::uvec3>& obj_faces) const
 {
-}
+	for(int i = 0; i < nesting_level_; i++)
+	{
 
+	}
+}
+//Need to implement this 
+void 
+Menger::CreateMenger()
+{
+	
+}
