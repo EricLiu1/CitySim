@@ -130,18 +130,27 @@ KeyCallback(GLFWwindow* window,
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	else if (key == GLFW_KEY_S && mods == GLFW_MOD_CONTROL && action == GLFW_RELEASE) {
 		// FIXME: save geometry to OBJ
+		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
+
 	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
+
 	} else if (key == GLFW_KEY_A && action != GLFW_RELEASE) {
+		g_camera.horizontalmvmt(1, g_camera.getMode());
 	} else if (key == GLFW_KEY_D && action != GLFW_RELEASE) {
+		g_camera.horizontalmvmt(-1, g_camera.getMode());
 	} else if (key == GLFW_KEY_LEFT && action != GLFW_RELEASE) {
 		// FIXME: Left Right Up and Down
 	} else if (key == GLFW_KEY_RIGHT && action != GLFW_RELEASE) {
 	} else if (key == GLFW_KEY_DOWN && action != GLFW_RELEASE) {
+		g_camera.verticalmvmtArrows(1, g_camera.getMode());
+
 	} else if (key == GLFW_KEY_UP && action != GLFW_RELEASE) {
+		g_camera.verticalmvmtArrows(-1, g_camera.getMode());
+
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
-		// FIXME: FPS mode on/off
+		g_camera.switchMode();
 	}
 	if (!g_menger)
 		return ; // 0-4 only available in Menger mode.

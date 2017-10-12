@@ -7,11 +7,40 @@ namespace {
 	float rotation_speed = 0.05f;
 	float zoom_speed = 0.1f;
 };
+void Camera::horizontalmvmt(int dir, bool fps)
+{
 
+	// eye_.z = direction * pan_speed;
+	if(fps)
+	{
+		eye_.x += dir * pan_speed;
+		center_.x += dir * pan_speed;
+
+	}
+	else
+	{
+		center_.x += dir * pan_speed;
+	}
+}
+void Camera::verticalmvmtArrows(int dir, bool fps)
+{
+
+	// eye_.z = direction * pan_speed;
+	if(fps)
+	{
+		eye_.y += dir * pan_speed;
+		center_.y += dir * pan_speed;
+
+	}
+	else
+	{
+		center_.y += dir * pan_speed;
+	}
+}
 // FIXME: Calculate the view matrix
 glm::mat4 Camera::get_view_matrix() const
 {
-	glm::mat4 ans = glm::lookAt(eye_, center_, up_);
+	//glm::mat4 ans = glm::lookAt(eye_, center_, up_);
 
 	glm::vec3 x, y, z;
 
