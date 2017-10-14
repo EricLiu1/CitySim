@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/portable_gl.h
+OpenGL/gl.h
+-
+GL/gl.h
+-
+
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/lib/debuggl.cc
+debuggl.h
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/lib/debuggl.h
+portable_gl.h
+-
+
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/lib/debuggl.h
+

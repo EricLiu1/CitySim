@@ -1,0 +1,6 @@
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/CMakeFiles/edit_cache.dir
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/CMakeFiles/rebuild_cache.dir
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/CMakeFiles/utgraphicsutil.dir
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/src/CMakeFiles/rebuild_cache.dir
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/src/CMakeFiles/edit_cache.dir
+/u/ehl377/EVERYTHING ELSE/Desktop/menger/build/src/CMakeFiles/menger.dir

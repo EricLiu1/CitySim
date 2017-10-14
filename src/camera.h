@@ -9,6 +9,7 @@ public:
 	glm::mat4 get_view_matrix() const; // same as glm lookat
 	// FIXME: add functions to manipulate camera objects.
 	void horizontalmvmt(int dir, bool fps);
+	void verticalmvmt(int dir, bool fps);
 	void verticalmvmtArrows(int dir, bool fps);
 	bool getMode() { return fps_mode; };
 	void switchMode() { fps_mode = !fps_mode; };

@@ -133,8 +133,9 @@ KeyCallback(GLFWwindow* window,
 		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
-
+		g_camera.verticalmvmt(1,g_camera.getMode());
 	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
+		g_camera.verticalmvmt(-1,g_camera.getMode());
 
 	} else if (key == GLFW_KEY_A && action != GLFW_RELEASE) {
 		g_camera.horizontalmvmt(1, g_camera.getMode());
