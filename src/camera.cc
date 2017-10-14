@@ -20,6 +20,12 @@ void Camera::horizontalmvmt(int dir, bool fps)
 	}
 
 }
+void Camera::cameraRoll(int dir){
+	
+	glm::rotate(dir * roll_speed, up_);
+	//up_.x += dir * roll_speed;
+
+}
 void Camera::verticalmvmt(int dir, bool fps)
 {
 //	eye_.x += dir * zoom_speed;

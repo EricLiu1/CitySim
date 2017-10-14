@@ -3,12 +3,13 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include <glm/gtx/rotate_vector.hpp>
 class Camera {
 public:
 	glm::mat4 get_view_matrix() const; // same as glm lookat
 	// FIXME: add functions to manipulate camera objects.
 	void horizontalmvmt(int dir, bool fps);
+	void cameraRoll(int dir);
 	void verticalmvmt(int dir, bool fps);
 	void verticalmvmtArrows(int dir, bool fps);
 	bool getMode() { return fps_mode; };

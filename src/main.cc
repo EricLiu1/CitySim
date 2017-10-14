@@ -90,13 +90,80 @@ void main()
 )zzz";
 
 void
-CreateTriangle(std::vector<glm::vec4>& vertices,
+CreateTriangle(std::vector<glm::vec4>& obj_vertices,
         std::vector<glm::uvec3>& indices)
 {
-	vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-	vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
-	vertices.push_back(glm::vec4(0.0f, 0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+
 	indices.push_back(glm::uvec3(0, 1, 2));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(3, 4, 5));
+
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(6, 7, 8));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(9, 10, 11));
+
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(12, 13, 14));
+
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(15, 16, 17));
+
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(18, 19, 20));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(21, 22, 23));
+
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(24, 25, 26));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(27, 28, 29));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(30, 31, 32));
+
+	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
+
+	indices.push_back(glm::uvec3(33, 34, 35));
 }
 
 // FIXME: Save geometry to OBJ file
@@ -133,22 +200,24 @@ KeyCallback(GLFWwindow* window,
 		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
-		g_camera.verticalmvmt(1,g_camera.getMode());
-	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
 		g_camera.verticalmvmt(-1,g_camera.getMode());
+	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
+		g_camera.verticalmvmt(1,g_camera.getMode());
 
 	} else if (key == GLFW_KEY_A && action != GLFW_RELEASE) {
-		g_camera.horizontalmvmt(1, g_camera.getMode());
-	} else if (key == GLFW_KEY_D && action != GLFW_RELEASE) {
 		g_camera.horizontalmvmt(-1, g_camera.getMode());
+	} else if (key == GLFW_KEY_D && action != GLFW_RELEASE) {
+		g_camera.horizontalmvmt(1, g_camera.getMode());
 	} else if (key == GLFW_KEY_LEFT && action != GLFW_RELEASE) {
 		// FIXME: Left Right Up and Down
+		g_camera.cameraRoll(-1);
 	} else if (key == GLFW_KEY_RIGHT && action != GLFW_RELEASE) {
+		g_camera.cameraRoll(1);
 	} else if (key == GLFW_KEY_DOWN && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(-1, g_camera.getMode());
 
 	} else if (key == GLFW_KEY_UP && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(-1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(1, g_camera.getMode());
 
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
 		g_camera.switchMode();
