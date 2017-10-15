@@ -11,55 +11,43 @@ namespace {
 void Camera::horizontalmvmt(int dir, bool fps)
 {
 	center_.x += dir * pan_speed;
-	// // eye_.z = direction * pan_speed;
-	// if(fps)
-	// {
  	eye_.x += dir * pan_speed;
-	// }
-
+ 	flag = false;
 }
-void Camera::cameraRoll(int dir){
-	
-	glm::rotate(dir * roll_speed, up_);
-	//up_.x += dir * roll_speed;
-
+void Camera::cameraRoll(int dir)
+{
+	// up_ *= glm::rotate(dir * roll_speed, eye_);
+	view *= glm::rotate(dir * roll_speed, eye_);
 }
+
 void Camera::verticalmvmt(int dir, bool fps)
 {
-//	eye_.x += dir * zoom_speed;
-//	eye_.y += dir * zoom_speed;
 	eye_.z += dir * zoom_speed;
 	center_.z += dir * zoom_speed;
-
-	// eye_.z = direction * pan_speed;
-// 	if(fps)
-// 	{
-// //		center_.x += dir * zoom_speed;
-// //		center_.y += dir * zoom_speed;
- 		
-
-
-// 	}
-
+	flag = false;
 }
 void Camera::verticalmvmtArrows(int dir, bool fps)
 {
 	center_.y += dir * pan_speed;
-	// // eye_.z = direction * pan_speed;
-	// if(fps)
-	// {
 	eye_.y += dir * pan_speed;
-
-	// }
-	
+	flag = false;
 }
-// FIXME: Calculate the view matrix
-glm::mat4 Camera::get_view_matrix() const
+
+glm::mat4 Camera::get_view_matrix()
 {
-	//glm::mat4 ans = glm::lookAt(eye_, center_, up_);
+
+	if(flag)
+		return view;
+
+	flag = true;
+	computeView();
+
+	return view;
+}
+
+void Camera::computeView() {
 
 	glm::vec3 x, y, z;
-
 	z = eye_ - center_;
 	z = glm::normalize(z);
 
@@ -69,20 +57,18 @@ glm::mat4 Camera::get_view_matrix() const
 	x = glm::normalize(x);
 	y = glm::normalize(y);
 
-	glm::mat4 gg;
-	gg[0][0] = x[0];
-	gg[1][0] = x[1];
-	gg[2][0] = x[2];
-	gg[3][0] = -glm::dot(x, eye_);
+	view[0][0] = x[0];
+	view[1][0] = x[1];
+	view[2][0] = x[2];
+	view[3][0] = -glm::dot(x, eye_);
 
-	gg[0][1] = y[0];
-	gg[1][1] = y[1];
-	gg[2][1] = y[2];
-	gg[3][1] = -glm::dot(y, eye_);
+	view[0][1] = y[0];
+	view[1][1] = y[1];
+	view[2][1] = y[2];
+	view[3][1] = -glm::dot(y, eye_);
 
-	gg[0][2] = z[0];
-	gg[1][2] = z[1];
-	gg[2][2] = z[2];
-	gg[3][2] = -glm::dot(z, eye_);
-	return gg;
+	view[0][2] = z[0];
+	view[1][2] = z[1];
+	view[2][2] = z[2];
+	view[3][2] = -glm::dot(z, eye_);
 }
