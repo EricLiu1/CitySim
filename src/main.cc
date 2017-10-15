@@ -224,7 +224,7 @@ int main(int argc, char* argv[])
         //FIXME: Create the geometry from a Menger object.
         //CreateTriangle(obj_vertices, obj_faces);
 
-	g_menger->set_nesting_level(1);
+	g_menger->set_nesting_level(2);
 
 	g_menger->generate_geometry(obj_vertices, obj_faces);
 	g_menger->set_clean();
@@ -255,7 +255,7 @@ int main(int argc, char* argv[])
 
 	// Setup vertex data in a VBO.
 	CHECK_GL_ERROR(glBindBuffer(GL_ARRAY_BUFFER, g_buffer_objects[kGeometryVao][kVertexBuffer]));
-	
+
 	// NOTE: We do not send anything right now, we just describe it to OpenGL.
 	CHECK_GL_ERROR(glBufferData(GL_ARRAY_BUFFER,
 				sizeof(float) * obj_vertices.size() * 4, nullptr,

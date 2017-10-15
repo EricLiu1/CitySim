@@ -60,7 +60,6 @@ void Menger::CreateCube(std::vector<glm::vec4>& bounds)
 		double y_ratio = (bounds[i+1][1] - bounds[i][1]) / 3;
 		double z_ratio = (bounds[i+1][2] - bounds[i][2]) / 3;
 		
-		std::cout << x_ratio << " " << y_ratio << " " << z_ratio << std::endl;
 		glm::vec4 lower_bound(bounds[i]);
 		glm::vec4 upper_bound(bounds[i + 1]);
 
@@ -109,70 +108,70 @@ Menger::CreateMenger(std::vector<glm::vec4>& obj_vertices,
 
 		double s = indices.size() * 3;
 
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmax, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmin, 1.0f));
-		indices.push_back(glm::uvec3(s++, s++, s++));
-
-
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
 
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
 
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
 
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
 
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymin, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmax, 1.0f));
-		indices.push_back(glm::uvec3(s++, s++, s++));
-
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
 
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmax, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmin, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmin, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmax, 1.0f));
+
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 
-		obj_vertices.push_back(glm::vec4(xmax, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmin, ymax, zmax, 1.0f));
-		obj_vertices.push_back(glm::vec4(xmax, ymin, zmax, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
+		indices.push_back(glm::uvec3(s++, s++, s++));
+
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmin + 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		indices.push_back(glm::uvec3(s++, s++, s++));
+
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmin + 0.001, ymax - 0.001, zmax - 0.001, 1.0f));
+		obj_vertices.push_back(glm::vec4(xmax - 0.001, ymin + 0.001, zmax - 0.001, 1.0f));
 		indices.push_back(glm::uvec3(s++, s++, s++));
 	}
 }
