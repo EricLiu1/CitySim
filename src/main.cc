@@ -93,77 +93,7 @@ void
 CreateTriangle(std::vector<glm::vec4>& obj_vertices,
         std::vector<glm::uvec3>& indices)
 {
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
 
-	indices.push_back(glm::uvec3(0, 1, 2));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(3, 4, 5));
-
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(6, 7, 8));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(9, 10, 11));
-
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(12, 13, 14));
-
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(15, 16, 17));
-
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(18, 19, 20));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(21, 22, 23));
-
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(24, 25, 26));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(27, 28, 29));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(30, 31, 32));
-
-	obj_vertices.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	obj_vertices.push_back(glm::vec4(0.5f, -0.5f, 0.5f, 1.0f));
-
-	indices.push_back(glm::uvec3(33, 34, 35));
 }
 
 // FIXME: Save geometry to OBJ file
@@ -292,9 +222,12 @@ int main(int argc, char* argv[])
 	std::vector<glm::uvec3> obj_faces;
         
         //FIXME: Create the geometry from a Menger object.
-        CreateTriangle(obj_vertices, obj_faces);
+        //CreateTriangle(obj_vertices, obj_faces);
 
 	g_menger->set_nesting_level(1);
+
+	g_menger->generate_geometry(obj_vertices, obj_faces);
+	g_menger->set_clean();
 
 	glm::vec4 min_bounds = glm::vec4(std::numeric_limits<float>::max());
 	glm::vec4 max_bounds = glm::vec4(-std::numeric_limits<float>::max());
@@ -304,6 +237,12 @@ int main(int argc, char* argv[])
 	}
 	std::cout << "min_bounds = " << glm::to_string(min_bounds) << "\n";
 	std::cout << "max_bounds = " << glm::to_string(max_bounds) << "\n";
+
+	//not sure how else to do this
+	// obj_vertices.erase(obj_vertices.begin());
+	// obj_vertices.erase(obj_vertices.begin());
+	// obj_vertices.erase(obj_vertices.begin());
+	// obj_faces.erase(obj_faces.begin());
 
 	// Setup our VAO array.
 	CHECK_GL_ERROR(glGenVertexArrays(kNumVaos, &g_array_objects[0]));
@@ -316,6 +255,7 @@ int main(int argc, char* argv[])
 
 	// Setup vertex data in a VBO.
 	CHECK_GL_ERROR(glBindBuffer(GL_ARRAY_BUFFER, g_buffer_objects[kGeometryVao][kVertexBuffer]));
+	
 	// NOTE: We do not send anything right now, we just describe it to OpenGL.
 	CHECK_GL_ERROR(glBufferData(GL_ARRAY_BUFFER,
 				sizeof(float) * obj_vertices.size() * 4, nullptr,

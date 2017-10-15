@@ -13,8 +13,11 @@ public:
 	void set_clean();
 	void generate_geometry(std::vector<glm::vec4>& obj_vertices,
 	                       std::vector<glm::uvec3>& obj_faces);
-	void CreateMenger();
-	void CreateCube(std::vector<glm::vec4>& obj_vertices, std::vector<glm::uvec3>& indices);
+	void CreateMenger(std::vector<glm::vec4>& obj_vertices,
+                          std::vector<glm::uvec3>& obj_faces,
+                          std::vector<glm::vec4>& bounds);
+
+	void CreateCube(std::vector<glm::vec4>& bounds);
 private:
 	int nesting_level_ = 0;
 	bool dirty_ = false;
