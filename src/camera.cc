@@ -30,6 +30,29 @@ void Camera::rightClick(double x, double y) {
 	}
 }
 
+void Camera::middleClick(double x, double y) {
+	if(fps_mode) {
+		
+		if(!set_coord) 
+		{
+			cam_x = x;
+			cam_y = y;
+			set_coord = true;
+		}
+		else {
+			center_.x += (x - cam_x) * pan_speed;
+		 	eye_.x += (x - cam_x) * pan_speed;
+			center_.y += (cam_y - y) * pan_speed;
+			eye_.y += (cam_y - y) * pan_speed;
+
+			cam_y = y;
+			cam_x = x;
+			flag = false;
+		}
+
+	}
+}
+
 void Camera::horizontalmvmt(int dir, bool fps)
 {
 	center_.x += dir * pan_speed;

@@ -183,6 +183,7 @@ MousePosCallback(GLFWwindow* window, double mouse_x, double mouse_y)
 		g_camera.rightClick(mouse_x, mouse_y);
 	} else if (g_current_button == GLFW_MOUSE_BUTTON_MIDDLE) {
 		// FIXME: middle drag
+		g_camera.middleClick(mouse_x, mouse_y);
 	}
 }
 

@@ -18,7 +18,7 @@ public:
 	void reset_coord() { set_coord = false; };
 
 	void rightClick(double x, double y);
-
+	void middleClick(double x, double y);
 private:
 	// load normally and transpose
 	// matrix load by col not by rows
@@ -34,6 +34,7 @@ private:
 	bool set_coord = false;
 	double cam_x = 0;
 	double cam_y = 0;
+
 };
 
 #endif
