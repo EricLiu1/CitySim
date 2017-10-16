@@ -8,15 +8,37 @@ namespace {
 	float zoom_speed = 0.1f;
 };
 
+void Camera::rightClick(double x, double y) {
+	if(fps_mode) {
+		
+		if(!set_coord) 
+		{
+			cam_x = x;
+			cam_y = y;
+			set_coord = true;
+		}
+		else {
+			eye_.z += (cam_y - y) * zoom_speed;
+			center_.z += (cam_y - y) * zoom_speed;
+			
+			cam_y = y;
+			cam_x = x;
+			
+			flag = false;
+		}
+
+	}
+}
+
 void Camera::horizontalmvmt(int dir, bool fps)
 {
 	center_.x += dir * pan_speed;
  	eye_.x += dir * pan_speed;
  	flag = false;
 }
+
 void Camera::cameraRoll(int dir)
 {
-	// up_ *= glm::rotate(dir * roll_speed, eye_);
 	view *= glm::rotate(dir * roll_speed, eye_);
 }
 

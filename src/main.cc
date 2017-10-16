@@ -170,14 +170,19 @@ bool g_mouse_pressed;
 void
 MousePosCallback(GLFWwindow* window, double mouse_x, double mouse_y)
 {
-	if (!g_mouse_pressed)
+	if (!g_mouse_pressed) {
+		g_camera.reset_coord();
 		return;
+	}
+
+	//std::cout << mouse_x << " " << mouse_y << std::endl;
 	if (g_current_button == GLFW_MOUSE_BUTTON_LEFT) {
 		// FIXME: left drag
 	} else if (g_current_button == GLFW_MOUSE_BUTTON_RIGHT) {
-		// FIXME: middle drag
-	} else if (g_current_button == GLFW_MOUSE_BUTTON_MIDDLE) {
 		// FIXME: right drag
+		g_camera.rightClick(mouse_x, mouse_y);
+	} else if (g_current_button == GLFW_MOUSE_BUTTON_MIDDLE) {
+		// FIXME: middle drag
 	}
 }
 
