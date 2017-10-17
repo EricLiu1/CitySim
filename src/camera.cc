@@ -41,17 +41,16 @@ void Camera::leftClick(double x, double y) {
 			float delta_x = cam_x - x;
 			float delta_y = cam_y - y;
 			glm::vec3 look = center_ - eye_;
-			glm::vec3 horz = glm::cross(look, up_);
-			//glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, up_)); 
-			
+			glm::vec3 horz = glm::cross(look, up_);			
 			glm::mat3 horzRot = glm::mat3(glm::rotate(delta_y * pan_speed, horz));
 			
-			//eye_ = vert * eye_;
-			//up_ = vert * up_;
-
 			eye_ = horzRot * eye_;
 			up_ = horzRot * up_;
 			
+			glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, up_)); 
+			eye_ = vert * eye_;
+			up_ = vert * up_;
+
 			cam_y = y;
 			cam_x = x;
 		}

@@ -34,9 +34,11 @@ in vec4 vertex_position;
 uniform mat4 view;
 uniform vec4 light_position;
 out vec4 vs_light_direction;
+out vec3 world_coord;
 void main()
 {
 	gl_Position = view * vertex_position;
+	world_coord = vertex_position.xyz;
 	vs_light_direction = -gl_Position + view * light_position;
 }
 )zzz";
@@ -47,17 +49,23 @@ layout (triangles) in;
 layout (triangle_strip, max_vertices = 3) out;
 uniform mat4 projection;
 in vec4 vs_light_direction[];
+in vec3 world_coord[];
 flat out vec4 normal;
 out vec4 light_direction;
+out vec3 triangle_normal;
 void main()
 {
 	int n = 0;
 	normal = vec4(0.0, 0.0, 1.0f, 0.0);
+
+	triangle_normal = cross(world_coord[1] - world_coord[0], world_coord[2] - world_coord[0]);
+
 	for (n = 0; n < gl_in.length(); n++) {
 		light_direction = vs_light_direction[n];
 		gl_Position = projection * gl_in[n].gl_Position;
 		EmitVertex();
 	}
+
 	EndPrimitive();
 }
 )zzz";
@@ -65,11 +73,24 @@ void main()
 const char* fragment_shader =
 R"zzz(#version 330 core
 flat in vec4 normal;
+in vec3 triangle_normal;
 in vec4 light_direction;
 out vec4 fragment_color;
 void main()
 {
-	vec4 color = vec4(1.0, 0.0, 0.0, 1.0);
+
+	vec4 color = vec4(1, 0, 0, 1.0);
+
+	if(abs(triangle_normal.x) > 0) {
+		color = vec4(1, 0, 0, 1);
+	}
+	else if(abs(triangle_normal.y) > 0) {
+		color = vec4(0, 1, 0, 1);
+	}
+	else if(abs(triangle_normal.z) > 0) {
+		color = vec4(0, 0, 1, 1);
+	}
+	
 	float dot_nl = dot(normalize(light_direction), normalize(normal));
 	dot_nl = clamp(dot_nl, 0.0, 1.0);
 	fragment_color = clamp(dot_nl * color, 0.0, 1.0);
