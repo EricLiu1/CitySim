@@ -8,17 +8,17 @@ class Camera {
 public:
 	glm::mat4 get_view_matrix(); // same as glm lookat
 	// FIXME: add functions to manipulate camera objects.
-	void horizontalmvmt(int dir, bool fps);
+	void horizontalmvmt(int dir);
 	void cameraRoll(int dir);
-	void verticalmvmt(int dir, bool fps);
-	void verticalmvmtArrows(int dir, bool fps);
+	void verticalmvmt(int dir);
+	void verticalmvmtArrows(int dir);
 	bool getMode() { return fps_mode; };
 
 	void switchMode() { fps_mode = !fps_mode; };
 	void reset_coord() { set_coord = false; };
 
 	void rightClick(double x, double y);
-	void middleClick(double x, double y);
+	void leftClick(double x, double y);
 private:
 	// load normally and transpose
 	// matrix load by col not by rows

@@ -1,4 +1,4 @@
-# Install script for directory: /u/ehl377/EVERYTHING ELSE/Desktop/menger/src
+# Install script for directory: /v/filer5b/v38q001/kzhang/cs354/proj2/menger/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -130,24 +130,24 @@ KeyCallback(GLFWwindow* window,
 		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
-		g_camera.verticalmvmt(-1,g_camera.getMode());
+		g_camera.verticalmvmt(-1);
 	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
-		g_camera.verticalmvmt(1,g_camera.getMode());
+		g_camera.verticalmvmt(1);
 
 	} else if (key == GLFW_KEY_A && action != GLFW_RELEASE) {
-		g_camera.horizontalmvmt(-1, g_camera.getMode());
+		g_camera.horizontalmvmt(-1);
 	} else if (key == GLFW_KEY_D && action != GLFW_RELEASE) {
-		g_camera.horizontalmvmt(1, g_camera.getMode());
+		g_camera.horizontalmvmt(1);
 	} else if (key == GLFW_KEY_LEFT && action != GLFW_RELEASE) {
 		// FIXME: Left Right Up and Down
 		g_camera.cameraRoll(-1);
 	} else if (key == GLFW_KEY_RIGHT && action != GLFW_RELEASE) {
 		g_camera.cameraRoll(1);
 	} else if (key == GLFW_KEY_DOWN && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(-1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(-1);
 
 	} else if (key == GLFW_KEY_UP && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(1);
 
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
 		g_camera.switchMode();
@@ -178,12 +178,10 @@ MousePosCallback(GLFWwindow* window, double mouse_x, double mouse_y)
 	//std::cout << mouse_x << " " << mouse_y << std::endl;
 	if (g_current_button == GLFW_MOUSE_BUTTON_LEFT) {
 		// FIXME: left drag
+		g_camera.leftClick(mouse_x, mouse_y);
 	} else if (g_current_button == GLFW_MOUSE_BUTTON_RIGHT) {
 		// FIXME: right drag
 		g_camera.rightClick(mouse_x, mouse_y);
-	} else if (g_current_button == GLFW_MOUSE_BUTTON_MIDDLE) {
-		// FIXME: middle drag
-		g_camera.middleClick(mouse_x, mouse_y);
 	}
 }
 

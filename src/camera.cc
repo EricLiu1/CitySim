@@ -23,15 +23,13 @@ void Camera::rightClick(double x, double y) {
 			
 			cam_y = y;
 			cam_x = x;
-			
-			flag = false;
 		}
 
 	}
 }
 
-void Camera::middleClick(double x, double y) {
-	if(fps_mode) {
+void Camera::leftClick(double x, double y) {
+	if(!fps_mode) {
 		
 		if(!set_coord) 
 		{
@@ -40,53 +38,70 @@ void Camera::middleClick(double x, double y) {
 			set_coord = true;
 		}
 		else {
-			center_.x += (x - cam_x) * pan_speed;
-		 	eye_.x += (x - cam_x) * pan_speed;
-			center_.y += (cam_y - y) * pan_speed;
-			eye_.y += (cam_y - y) * pan_speed;
+			float delta_x = cam_x - x;
+			float delta_y = cam_y - y;
+			glm::vec3 look = center_ - eye_;
+			glm::vec3 horz = glm::cross(look, up_);
+			//glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, up_)); 
+			
+			glm::mat3 horzRot = glm::mat3(glm::rotate(delta_y * pan_speed, horz));
+			
+			//eye_ = vert * eye_;
+			//up_ = vert * up_;
 
+			eye_ = horzRot * eye_;
+			up_ = horzRot * up_;
+			
 			cam_y = y;
 			cam_x = x;
-			flag = false;
 		}
 
 	}
+	else {
+		if(!set_coord) 
+		{
+			cam_x = x;
+			cam_y = y;
+			set_coord = true;
+		}
+		else {
+			center_.x += (x - cam_x) * pan_speed;
+			center_.y += (cam_y - y) * pan_speed;
+
+			cam_y = y;
+			cam_x = x;
+		}
+	}
 }
 
-void Camera::horizontalmvmt(int dir, bool fps)
+void Camera::horizontalmvmt(int dir)
 {
-	center_.x += dir * pan_speed;
- 	eye_.x += dir * pan_speed;
- 	flag = false;
+	glm::vec3 look = center_ - eye_;
+	glm::vec3 side_dir = glm::normalize(glm::cross(up_, look));
+
+	center_ += side_dir * (pan_speed * dir);
+ 	eye_ += side_dir * (pan_speed * dir);
 }
 
 void Camera::cameraRoll(int dir)
 {
-	view *= glm::rotate(dir * roll_speed, eye_);
+	up_ = glm::mat3( glm::rotate(dir * roll_speed, eye_)) * up_;
 }
 
-void Camera::verticalmvmt(int dir, bool fps)
+void Camera::verticalmvmt(int dir)
 {
 	eye_.z += dir * zoom_speed;
 	center_.z += dir * zoom_speed;
-	flag = false;
 }
-void Camera::verticalmvmtArrows(int dir, bool fps)
+void Camera::verticalmvmtArrows(int dir)
 {
-	center_.y += dir * pan_speed;
-	eye_.y += dir * pan_speed;
-	flag = false;
+	center_ += up_ * (pan_speed * -dir);
+ 	eye_ += up_ * (pan_speed * -dir );
 }
 
 glm::mat4 Camera::get_view_matrix()
 {
-
-	if(flag)
-		return view;
-
-	flag = true;
 	computeView();
-
 	return view;
 }
 
