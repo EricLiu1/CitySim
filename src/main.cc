@@ -47,7 +47,7 @@ layout (triangles) in;
 layout (triangle_strip, max_vertices = 3) out;
 uniform mat4 projection;
 in vec4 vs_light_direction[];
-flat out vec4 normal;
+out vec4 normal;
 out vec4 light_direction;
 void main()
 {
@@ -64,7 +64,7 @@ void main()
 
 const char* fragment_shader =
 R"zzz(#version 330 core
-flat in vec4 normal;
+in vec4 normal;
 in vec4 light_direction;
 out vec4 fragment_color;
 void main()
@@ -130,24 +130,24 @@ KeyCallback(GLFWwindow* window,
 		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
-		g_camera.verticalmvmt(-1,g_camera.getMode());
+		g_camera.verticalmvmt(-1);
 	} else if (key == GLFW_KEY_S && action != GLFW_RELEASE) {
-		g_camera.verticalmvmt(1,g_camera.getMode());
+		g_camera.verticalmvmt(1);
 
 	} else if (key == GLFW_KEY_A && action != GLFW_RELEASE) {
-		g_camera.horizontalmvmt(-1, g_camera.getMode());
+		g_camera.horizontalmvmt(-1);
 	} else if (key == GLFW_KEY_D && action != GLFW_RELEASE) {
-		g_camera.horizontalmvmt(1, g_camera.getMode());
+		g_camera.horizontalmvmt(1);
 	} else if (key == GLFW_KEY_LEFT && action != GLFW_RELEASE) {
 		// FIXME: Left Right Up and Down
 		g_camera.cameraRoll(-1);
 	} else if (key == GLFW_KEY_RIGHT && action != GLFW_RELEASE) {
 		g_camera.cameraRoll(1);
 	} else if (key == GLFW_KEY_DOWN && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(-1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(-1);
 
 	} else if (key == GLFW_KEY_UP && action != GLFW_RELEASE) {
-		g_camera.verticalmvmtArrows(1, g_camera.getMode());
+		g_camera.verticalmvmtArrows(1);
 
 	} else if (key == GLFW_KEY_C && action != GLFW_RELEASE) {
 		g_camera.switchMode();
@@ -178,6 +178,7 @@ MousePosCallback(GLFWwindow* window, double mouse_x, double mouse_y)
 	//std::cout << mouse_x << " " << mouse_y << std::endl;
 	if (g_current_button == GLFW_MOUSE_BUTTON_LEFT) {
 		// FIXME: left drag
+		g_camera.leftClick(mouse_x, mouse_y);
 	} else if (g_current_button == GLFW_MOUSE_BUTTON_RIGHT) {
 		// FIXME: right drag
 		g_camera.rightClick(mouse_x, mouse_y);
@@ -403,7 +404,10 @@ int main(int argc, char* argv[])
 		// 	3. Pass Uniforms
 		// 	4. Call glDrawElements, since input geometry is
 		// 	indicated by VAO.
-
+		CHECK_GL_ERROR(glBindVertexArray(g_array_objects[kFloorVao]));
+		CHECK_GL_ERROR(glBindBuffer(GL_ARRAY_BUFFER,
+		                            g_buffer_objects[kFloorVao][kVertexBuffer]));
+		
 		// Poll and swap.
 		glfwPollEvents();
 		glfwSwapBuffers(window);
