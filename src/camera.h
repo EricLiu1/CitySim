@@ -34,7 +34,7 @@ private:
 	bool set_coord = false;
 	double cam_x = 0;
 	double cam_y = 0;
-
+	
 };
 
 #endif

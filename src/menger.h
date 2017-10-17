@@ -16,11 +16,13 @@ public:
 	void CreateMenger(std::vector<glm::vec4>& obj_vertices,
                           std::vector<glm::uvec3>& obj_faces,
                           std::vector<glm::vec4>& bounds);
-
+	void set_save(bool flag);
+	bool is_save();
 	void CreateCube(std::vector<glm::vec4>& bounds);
 private:
 	int nesting_level_ = 0;
 	bool dirty_ = false;
+	bool save_ = false;
 };
 	
 #endif

@@ -118,11 +118,27 @@ CreateTriangle(std::vector<glm::vec4>& obj_vertices,
 }
 
 // FIXME: Save geometry to OBJ file
+ std::vector<glm::vec4> vertice;
+ std::vector<glm::uvec3> face;
+void setStuff(std::vector<glm::vec4>& vertices,
+         std::vector<glm::uvec3>& faces)
+        {
+        	face = faces;
+        	vertice = vertices;
+        }
 void
-SaveObj(const std::string& file,
-        const std::vector<glm::vec4>& vertices,
-        const std::vector<glm::uvec3>& indices)
-{
+SaveObj()
+{  
+	freopen ("geometry.obj","w+",stdout);
+	for(glm::vec4 vecs: vertice)
+	{
+		std::cout<<"v "<< vecs[0]<<" "<< vecs[1]<< " "<< vecs[2]<<" "<< vecs[3]<<std::endl;
+	}
+	for(glm::uvec3 vecs: face)
+	{
+		std::cout<<"f "<< vecs[0]<<" "<< vecs[1]<< " "<< vecs[2]<<std::endl;
+	}
+	fclose(stdout);
 }
 
 void
@@ -146,8 +162,13 @@ KeyCallback(GLFWwindow* window,
 	// you may want to re-organize this piece of code.
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	else if (key == GLFW_KEY_S && mods == GLFW_MOD_CONTROL && action == GLFW_RELEASE) {
+	else if ( (key == GLFW_KEY_S && mods == GLFW_MOD_CONTROL && action == GLFW_RELEASE)||(key == GLFW_KEY_T && action != GLFW_RELEASE) ) {
 		// FIXME: save geometry to OBJ
+
+		if(g_menger)
+		{
+				SaveObj();
+		}
 		// extra credit
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
@@ -263,6 +284,7 @@ int main(int argc, char* argv[])
 	std::cout << "min_bounds = " << glm::to_string(min_bounds) << "\n";
 	std::cout << "max_bounds = " << glm::to_string(max_bounds) << "\n";
 
+	setStuff(obj_vertices,obj_faces);
 	//not sure how else to do this
 	// obj_vertices.erase(obj_vertices.begin());
 	// obj_vertices.erase(obj_vertices.begin());
