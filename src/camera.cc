@@ -18,8 +18,11 @@ void Camera::rightClick(double x, double y) {
 			set_coord = true;
 		}
 		else {
-			eye_.z += (cam_y - y) * zoom_speed;
-			center_.z += (cam_y - y) * zoom_speed;
+			glm::vec3 look = glm::normalize(center_ - eye_);
+
+			float y_fact = cam_y - y;
+			eye_ += look * (zoom_speed * y_fact);
+			center_ += look * (zoom_speed * y_fact);
 			
 			cam_y = y;
 			cam_x = x;
@@ -41,21 +44,21 @@ void Camera::leftClick(double x, double y) {
 			float delta_x = cam_x - x;
 			float delta_y = cam_y - y;
 
-			glm::vec3 look = center_ - eye_;
-			glm::vec3 horz = glm::cross(look, up_);
+			glm::vec3 look = glm::normalize(center_ - eye_);
+			glm::vec3 side = glm::normalize(glm::cross(look, up_));
 
-			glm::mat3 horzRot = glm::mat3(glm::rotate(delta_y * pan_speed, horz));
-		
+			glm::mat3 horzRot = glm::mat3(glm::rotate(delta_y * pan_speed, side));
+			glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, up_)); 
 
 			eye_ = horzRot * eye_;
-			look = center_ - eye_;
-			up_ = glm::cross(look, horz);
-
-			glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, up_)); 	
 			eye_ = vert * eye_;
-			look = center_ - eye_;
-			up_ = glm::cross(look, horz);
 
+			// glm::vec3 secnd_up = glm::mat3(glm::translate(look)) * up_; 
+			// glm::mat3 vert = glm::mat3(glm::rotate(delta_x * pan_speed, secnd_up)); 		
+			// eye_ = vert * eye_;
+
+
+			up_ = glm::cross(side, glm::normalize(center_ - eye_));
 
 			cam_y = y;
 			cam_x = x;
@@ -95,8 +98,10 @@ void Camera::cameraRoll(int dir)
 
 void Camera::verticalmvmt(int dir)
 {
-	eye_.z += dir * zoom_speed;
-	center_.z += dir * zoom_speed;
+	glm::vec3 look = glm::normalize(center_ - eye_);
+
+	eye_ += look * (zoom_speed * dir);
+	center_ += look * (zoom_speed * dir);
 }
 void Camera::verticalmvmtArrows(int dir)
 {

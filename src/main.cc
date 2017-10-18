@@ -53,6 +53,7 @@ in vec3 world_coord[];
 flat out vec4 normal;
 out vec4 light_direction;
 out vec3 triangle_normal;
+out vec3 world_position;
 void main()
 {
 	int n = 0;
@@ -63,6 +64,7 @@ void main()
 	for (n = 0; n < gl_in.length(); n++) {
 		light_direction = vs_light_direction[n];
 		gl_Position = projection * gl_in[n].gl_Position;
+		world_position = world_coord[n];
 		EmitVertex();
 	}
 
@@ -100,13 +102,19 @@ void main()
 // FIXME: Implement shader effects with an alternative shader.
 const char* floor_fragment_shader =
 R"zzz(#version 330 core
-in vec4 normal;
+flat in vec4 normal;
 in vec4 light_direction;
-in vec4 world_position;
+in vec3 world_position;
 out vec4 fragment_color;
 void main()
 {
-	fragment_color = vec4(1.0, 0.0, 0.0, 1.0);
+	fragment_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+	int x = int(floor(world_position[0]) + floor(world_position[2])); 
+
+	if( bool(x & 1) ) {
+		fragment_color = vec4(0, 0, 0, 1);
+	}
 }
 )zzz";
 
@@ -123,13 +131,13 @@ setup_floor(std::vector<glm::vec4>& floor_vertices,
 {
 	glm::vec4 origin(0.0f, -2.0f, 0.0f, 1.0f);
 
-	glm::vec4 corner1_1(-1.0f, -2.0f, 0.0f, 0.0f);
+	glm::vec4 corner1_1(-1000.0f, -2.0f, 0.0f, 0.0f);
 
-	glm::vec4 corner2_1(0.0, -2.0, -1.0, 0.0);
+	glm::vec4 corner2_1(0.0, -2.0, -1000.0, 0.0);
 
-	glm::vec4 corner3_1(1.0, -2.0, 0.0, 0.0);
+	glm::vec4 corner3_1(1000.0, -2.0, 0.0, 0.0);
 
-	glm::vec4 corner4_1(0.0f, -2.0f, 1.0f, 0.0f);
+	glm::vec4 corner4_1(0.0f, -2.0f, 1000.0f, 0.0f);
 
 	floor_vertices.push_back(origin);
 	floor_vertices.push_back(corner1_1); 
