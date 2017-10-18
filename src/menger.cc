@@ -39,6 +39,8 @@ Menger::generate_geometry(std::vector<glm::vec4>& obj_vertices,
                           std::vector<glm::uvec3>& obj_faces) 
 {
 	std::vector<glm::vec4> bounds;
+	obj_vertices.clear();
+	obj_faces.clear();
 	bounds.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
 	bounds.push_back(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
 
@@ -92,7 +94,7 @@ Menger::CreateMenger(std::vector<glm::vec4>& obj_vertices,
                           std::vector<glm::uvec3>& indices,
                           std::vector<glm::vec4>& bounds)
 {
-	
+
 	for(int i = 0; i < bounds.size(); i += 2) {
 		glm::vec4 lower_bound = bounds[i];
 		glm::vec4 upper_bound = bounds[i + 1];

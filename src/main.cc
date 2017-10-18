@@ -213,11 +213,21 @@ KeyCallback(GLFWwindow* window,
 		return ; // 0-4 only available in Menger mode.
 	if (key == GLFW_KEY_0 && action != GLFW_RELEASE) {
 		// FIXME: Change nesting level of g_menger
-		// Note: GLFW_KEY_0 - 4 may not be continuous.
+		// Note: GLFW_KEY_0 - 4 may not be continuous
+		g_menger->set_nesting_level(0);
+
 	} else if (key == GLFW_KEY_1 && action != GLFW_RELEASE) {
+		g_menger->set_nesting_level(1);
+
 	} else if (key == GLFW_KEY_2 && action != GLFW_RELEASE) {
+		g_menger->set_nesting_level(2);
+
 	} else if (key == GLFW_KEY_3 && action != GLFW_RELEASE) {
+		g_menger->set_nesting_level(3);
+
 	} else if (key == GLFW_KEY_4 && action != GLFW_RELEASE) {
+		g_menger->set_nesting_level(4);
+
 	}
 }
 
@@ -282,7 +292,7 @@ int main(int argc, char* argv[])
 	std::vector<glm::vec4> obj_vertices;
 	std::vector<glm::uvec3> obj_faces;
 
-	g_menger->set_nesting_level(2);
+	g_menger->set_nesting_level(1);
 
 	g_menger->generate_geometry(obj_vertices, obj_faces);
 	g_menger->set_clean();
@@ -453,6 +463,16 @@ int main(int argc, char* argv[])
 		if (g_menger && g_menger->is_dirty()) {
 			g_menger->generate_geometry(obj_vertices, obj_faces);
 			g_menger->set_clean();
+
+			CHECK_GL_ERROR(glBufferData(GL_ARRAY_BUFFER,
+						sizeof(float) * obj_vertices.size() * 4, nullptr,
+						GL_STATIC_DRAW));
+
+			// Setup element array buffer.
+			CHECK_GL_ERROR(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, g_buffer_objects[kGeometryVao][kIndexBuffer]));
+			CHECK_GL_ERROR(glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+						sizeof(uint32_t) * obj_faces.size() * 3,
+						&obj_faces[0], GL_STATIC_DRAW));
 		}
 
 		// Compute the projection matrix.
