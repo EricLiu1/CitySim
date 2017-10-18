@@ -32,6 +32,17 @@ Menger::set_clean()
 {
 	dirty_ = false;
 }
+bool
+Menger::is_save() 
+{
+	return save_;
+}
+
+void
+Menger::set_save(bool flag)
+{
+	save_ = flag;
+}
 
 // FIXME generate Menger sponge geometry
 void

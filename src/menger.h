@@ -18,9 +18,12 @@ public:
                           std::vector<glm::vec4>& bounds);
 
 	void CreateCube(std::vector<glm::vec4>& bounds);
+	void set_save(bool flag);
+	bool is_save();
 private:
 	int nesting_level_ = 0;
 	bool dirty_ = false;
+	bool save_ = false;
 };
 	
 #endif

@@ -154,11 +154,27 @@ setup_floor(std::vector<glm::vec4>& floor_vertices,
 	floor_faces.push_back(glm::vec3(s + 9, s + 10, s + 11));
 }
 // FIXME: Save geometry to OBJ file
+ std::vector<glm::vec4> vertice;
+ std::vector<glm::uvec3> face;
+void setStuff(std::vector<glm::vec4>& vertices,
+         std::vector<glm::uvec3>& faces)
+        {
+        	face = faces;
+        	vertice = vertices;
+        }
 void
-SaveObj(const std::string& file,
-        const std::vector<glm::vec4>& vertices,
-        const std::vector<glm::uvec3>& indices)
-{
+SaveObj()
+{  
+	freopen ("geometry.obj","w+",stdout);
+	for(glm::vec4 vecs: vertice)
+	{
+		std::cout<<"v "<< vecs[0]<<" "<< vecs[1]<< " "<< vecs[2]<<" "<< vecs[3]<<std::endl;
+	}
+	for(glm::uvec3 vecs: face)
+	{
+		std::cout<<"f "<< vecs[0]<<" "<< vecs[1]<< " "<< vecs[2]<<std::endl;
+	}
+	fclose(stdout);
 }
 
 void
@@ -182,9 +198,13 @@ KeyCallback(GLFWwindow* window,
 	// you may want to re-organize this piece of code.
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	else if (key == GLFW_KEY_S && mods == GLFW_MOD_CONTROL && action == GLFW_RELEASE) {
+else if ( (key == GLFW_KEY_S && mods == GLFW_MOD_CONTROL && action == GLFW_RELEASE)||(key == GLFW_KEY_T && action != GLFW_RELEASE) ) {
 		// FIXME: save geometry to OBJ
-		// extra credit
+
+		if(g_menger)
+		{
+				SaveObj();
+		}		
 	} else if (key == GLFW_KEY_W && action != GLFW_RELEASE) {
 		// FIXME: WASD
 		g_camera.verticalmvmt(-1);
@@ -314,6 +334,7 @@ int main(int argc, char* argv[])
 		min_bounds = glm::min(obj_vertices[i], min_bounds);
 		max_bounds = glm::max(obj_vertices[i], max_bounds);
 	}
+	setStuff(obj_vertices,obj_faces);
 	std::cout << "min_bounds = " << glm::to_string(min_bounds) << "\n";
 	std::cout << "max_bounds = " << glm::to_string(max_bounds) << "\n";
 	// Setup our VAO array.
