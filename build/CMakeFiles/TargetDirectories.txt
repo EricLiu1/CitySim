@@ -1,6 +1,6 @@
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/CMakeFiles/edit_cache.dir
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/CMakeFiles/rebuild_cache.dir
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/CMakeFiles/utgraphicsutil.dir
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/rebuild_cache.dir
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/edit_cache.dir
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/menger.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/CMakeFiles/edit_cache.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/CMakeFiles/rebuild_cache.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/CMakeFiles/utgraphicsutil.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/rebuild_cache.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/edit_cache.dir
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/menger.dir

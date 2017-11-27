@@ -44,13 +44,13 @@ GL/glext.h
 GL/glu.h
 -
 
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/camera.cc
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/camera.cc
 camera.h
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/camera.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/camera.h
 iostream
 -
 
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/camera.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/camera.h
 glm/glm.hpp
 -
 glm/gtc/matrix_transform.hpp
@@ -58,7 +58,7 @@ glm/gtc/matrix_transform.hpp
 glm/gtx/rotate_vector.hpp
 -
 
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/main.cc
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/main.cc
 fstream
 -
 iostream
@@ -82,17 +82,17 @@ GLFW/glfw3.h
 debuggl.h
 -
 menger.h
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/menger.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/menger.h
 camera.h
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/camera.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/camera.h
 
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/menger.cc
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/menger.cc
 menger.h
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/menger.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/menger.h
 iostream
 -
 
-/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/menger.h
+/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/menger.h
 glm/glm.hpp
 -
 vector

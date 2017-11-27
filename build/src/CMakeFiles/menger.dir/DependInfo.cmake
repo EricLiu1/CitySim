@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/camera.cc" "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/menger.dir/camera.cc.o"
-  "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/main.cc" "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/menger.dir/main.cc.o"
-  "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/src/menger.cc" "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/src/CMakeFiles/menger.dir/menger.cc.o"
+  "/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/camera.cc" "/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/menger.dir/camera.cc.o"
+  "/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/main.cc" "/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/menger.dir/main.cc.o"
+  "/v/filer5b/v38q001/kzhang/cs354/menger/menger/src/menger.cc" "/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/src/CMakeFiles/menger.dir/menger.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,7 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/v/filer5b/v38q001/kzhang/cs354/proj2/menger/build/CMakeFiles/utgraphicsutil.dir/DependInfo.cmake"
+  "/v/filer5b/v38q001/kzhang/cs354/menger/menger/build/CMakeFiles/utgraphicsutil.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
